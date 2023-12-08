@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @the_user == nil
       redirect_to("/404")
     else
-      render(template: "users_html/show")
+      render(template: "users/show")
     end
   end
 
