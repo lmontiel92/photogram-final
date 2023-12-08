@@ -32,6 +32,47 @@
   </dd>
 
   <dt>
+    Likes count
+  </dt>
+  <dd>
+    <%= @the_photo.likes_count %>
+  </dd>
+
+  <dt>
+    Comments count
+  </dt>
+  <dd>
+    <%= @the_photo.comments_count %>
+  </dd>
+
+  <dt>
+    Fans
+  </dt>
+  <dd>
+    
+    <%response = ""%>
+    <%length = @the_photo.fans.count - 1%>
+
+    <% @the_photo.fans.each_with_index do |a_fan, count| %>
+      
+      <%if count < length-1%>
+        <%response = response + a_fan.username.to_s + ", "%>
+
+      <%elsif count == length-1%>
+        <%response = response + a_fan.username.to_s + ", and "%>
+
+      <%else%>
+        <%response = response + a_fan.username.to_s%>
+
+      <%end%>
+
+    <%end%>
+
+    <%=response%>
+
+  </dd>
+
+  <dt>
     Edit photo
   </dt>
   <dd>
