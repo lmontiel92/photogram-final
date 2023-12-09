@@ -6,16 +6,36 @@
   </head>
 
   <body>
-     <nav>
+
+    <nav>
       <ul>
-        <li>
-          <a href="/users"> All users</a>
-        </li>
-        <li>
-          <a href="/photos">All public photos</a>
-        </li>
+        <li> <a href="/">All users</a> </li>
+        <li> <a href="/photos">All public photos</a> </li>
+
+        <% if current_user != nil %>
+        <li> <a href="/users/sign_out">Sign out</a> </li>
+        <li> <a href="/users/edit">Edit profile</a> </li>
+        <%else%>
+        <li> <a href="/users/sign_in">Sign in</a> </li>
+        <li> <a href="/users/sign_up">Sign up</a> </li>
+        <%end%>
       </ul>
     </nav>
+    
+    <hr>
+
+    <% if notice.present? %>
+      <div style="color: green">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div style="color: red">
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

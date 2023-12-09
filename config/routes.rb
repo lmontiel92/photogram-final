@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  
+  devise_for :users
+
+  root to: "users#index"
+  
   # Routes for the Comment resource:
 
   # CREATE
@@ -77,9 +82,9 @@ Rails.application.routes.draw do
 
   #Routes for Users
 
-  devise_for :users
+  
 
-  get("/", controller: "users", action: "index")
+  #get("/", controller: "users", action: "index")
 
   get("/users", controller: "users", action: "index")
 
