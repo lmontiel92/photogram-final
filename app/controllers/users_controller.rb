@@ -26,6 +26,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def show_feed
+    @username = params.fetch("username")
+    @the_user = User.where(username: @username).first
+
+    if @the_user == nil
+      redirect_to("/404")
+    else
+      render(template: "users/show_feed")
+    end
+  end
+
+  def show_discover
+    @username = params.fetch("username")
+    @the_user = User.where(username: @username).first
+
+    if @the_user == nil
+      redirect_to("/404")
+    else
+      render(template: "users/show_discover")
+    end
+  end
+
   def create
     my_input_username = params.fetch("input_username")
     new_user = User.new
