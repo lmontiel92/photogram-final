@@ -39,21 +39,36 @@
         <%= result %>
       </td>
 
-      <td>
+      <% if current_user != nil %>
 
-          <% if current_user != nil %>
-            <form action="/insert_follow_request" method="post">
-              <input type="hidden" name="query_recipient_id" value= "<%= a_user.id %>">
+        <% if current_user.following.where(username:a_user.username).at(0) == nil%>
+      
+          <td>
+                <form action="/insert_follow_request" method="post">
+                  <input type="hidden" name="query_recipient_id" value= "<%= a_user.id %>">
+                  <input type="hidden" name="query_sender_id" value= "<%= current_user.id %>">
+                  <input type="hidden" name="query_status" value= "pending">
 
-              <button>
-                Follow
-              </button>
-            </form>
+                  <button>
+                    Follow
+                  </button>
+                </form>
 
-          <%else%>
+          </td>
 
-          <%end%>
-      </td>
+        <%else%>
+
+          <td>
+            <a href="/delete_follow_request/<%=current_user.sent_follow_requests.where(sender_id: current_user.id, recipient_id: a_user.id).at(0).id%>">Unfollow</a>
+          </td>
+
+        <%end%>
+
+      <%else%>
+
+        <td></td>
+
+      <%end%>
 
       <td>
         <a href="/users/<%= a_user.username %>">
