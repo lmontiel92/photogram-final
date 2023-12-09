@@ -82,29 +82,36 @@
     </form>
   </dd>
 
-  <dt>
-    Edit photo
-  </dt>
-  <dd>
-    <form action="/update_photo/<%= @the_photo.id %>" method="post">
-      <label for="browser_image">Image</label>
-      <input id="browser_image" type="text" name="input_image" placeholder="Enter a URL for the image..." value=<%= @the_photo.image %>>
+  <% if current_user.id != @the_photo.owner.id %>
 
-      <label for="browser_caption">Caption</label>
-      <textarea id="browser_caption" name="input_caption" placeholder="Enter a caption for the photo..."><%= @the_photo.caption %></textarea>
+  <%else%>
 
-      <button>Update photo</button>
-    </form>
-  </dd>
+    <dt>
+      Edit photo
+    </dt>
+    <dd>
+      <form action="/update_photo/<%= @the_photo.id %>" method="post">
+        <label for="browser_image">Image</label>
+        <input id="browser_image" type="text" name="input_image" placeholder="Enter a URL for the image..." value=<%= @the_photo.image %>>
 
-  <dt>
-    Delete photo
-  </dt>
-  <dd>
-    <a href="/delete_photo/<%= @the_photo.id %>">
-      Delete this photo
-    </a>
-  </dd>
+        <label for="browser_caption">Caption</label>
+        <textarea id="browser_caption" name="input_caption" placeholder="Enter a caption for the photo..."><%= @the_photo.caption %></textarea>
+
+        <button>Update photo</button>
+      </form>
+    </dd>
+
+    <dt>
+      Delete photo
+    </dt>
+    <dd>
+      <a href="/delete_photo/<%= @the_photo.id %>">
+        Delete this photo
+      </a>
+    </dd>
+
+  <%end%>
+
 </dl>
 
 <h2>Comments</h2>
