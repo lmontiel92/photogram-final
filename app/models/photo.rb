@@ -61,6 +61,14 @@ class Photo < ApplicationRecord
     return response
 
   end
+
+  def creation2
+
+    time_now = (DateTime.now-self.created_at.strftime('%6N').to_i)
+
+    return time_now
+
+  end
   
 
   

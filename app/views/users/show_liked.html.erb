@@ -31,7 +31,7 @@
 </nav>
 
 
-<h2>Own photos (<%= @the_user.own_photos.count %>)</h2>
+<h2>Liked photos (<%= @the_user.liked_photos.count %>)</h2>
 
 <table border="1">
   <tr>
@@ -59,7 +59,7 @@
     </th>
   </tr>
 
-  <% @the_user.own_photos.each do |a_photo| %>
+  <% @the_user.liked_photos.each do |a_photo| %>
 
     <tr>
       <td>
