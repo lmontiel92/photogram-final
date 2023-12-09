@@ -26,10 +26,14 @@
       </td>
 
       <td>
-        <%result = "No"%>
+
         
             <%if a_user.private == true%>
               <%result = "Yes"%>
+
+            <%else%>
+              <%result = "No"%>
+              
             <%end%>              
                 
         <%= result %>
