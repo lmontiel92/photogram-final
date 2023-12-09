@@ -1,12 +1,5 @@
 <h1>List of users</h1>
 
-<form action="/add_user" method="post">
-  <label for="browser_username">Username</label>
-  <input id="browser_username" type="text" name="input_username" placeholder="Enter a username...">
-
-  <button>Add user</button>
-</form>
-
 <hr>
 
 <table border="1">
@@ -43,6 +36,8 @@
       </td>
 
       <td>
+
+          <% if current_user != nil %>
             <form action="/insert_follow_request" method="post">
               <input type="hidden" name="query_recipient_id" value= "<%= a_user.id %>">
 
@@ -50,6 +45,10 @@
                 Follow
               </button>
             </form>
+
+          <%else%>
+
+          <%end%>
       </td>
 
       <td>
