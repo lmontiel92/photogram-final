@@ -27,6 +27,42 @@ class Photo < ApplicationRecord
   has_many :followers, through: :owner, source: :following
   has_many :fan_followers, through: :fans, source: :following
 
+  #Instance Methods:
+
+  def creation
+    require "date"
+
+    created_year = self.created_at.year.to_i
+    created_day = self.created_at.day.to_i
+    created_month = self.created_at.month.to_i
+    created_date = Date.new(created_year,created_month,created_day)
+    today = Date.today
+
+    days_since_creation = (today - created_date).to_i
+    years_since_creation = (days_since_creation/365.0).to_f
+    fractional_years = years_since_creation.round(2)
+    whole_years = years_since_creation.round(0)
+    year_fraction = fractional_years-whole_years
+
+    if year_fraction < 0
+      response = "almost #{whole_years} years ago"
+
+    elsif year_fraction <=0.25
+      response = "about #{whole_years} years ago"
+
+    elsif year_fraction <=0.75
+      response = "over #{whole_years} years ago"
+
+    else
+      response = "almost #{whole_years} years ago"
+
+    end
+    
+    return response
+
+  end
+  
+
   
 
 end
